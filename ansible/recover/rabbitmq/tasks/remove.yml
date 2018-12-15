@@ -1,0 +1,11 @@
+---
+- name: Remove Container
+  vars:
+    project_name: 'rabbitmq'
+  role_include:
+    name: 'recove/docker/{{ item }}'
+    tasks_from: remove
+  with_items:
+    - 'container'
+    - 'volume'
+    - 'image'

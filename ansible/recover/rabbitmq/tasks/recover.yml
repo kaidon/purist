@@ -1,0 +1,16 @@
+---
+- name: remove resources
+  include: remove.yml
+
+- name: remove config
+  vars:
+    project_name: rabbitmq
+  file:
+    path: {{ node_config_directory }}/{{ project_name }}
+    state: absent
+
+- name: deploy resource
+  vars:
+    action: 'deploy'
+  incloude_role:
+    name: rabbitmq
