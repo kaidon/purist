@@ -1,5 +1,5 @@
 ---
-- name: Remove Project volume
+- name: Remove Project Container
   dire_docker:
     action: "remove_container"
     name: "{{ project_name }}"

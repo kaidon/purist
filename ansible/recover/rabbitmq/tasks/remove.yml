@@ -1,11 +1,17 @@
 ---
 - name: Remove Container
+  include_role:
+    name: 'recover/docker/{{ item }}'
+    tasks_from: remove
   vars:
     project_name: 'rabbitmq'
-  role_include:
-    name: 'recove/docker/{{ item }}'
-    tasks_from: remove
   with_items:
     - 'container'
     - 'volume'
-    - 'image'
+
+- name: remove config
+  vars:
+    project_name: rabbitmq
+  file:
+    path: '{{ node_config_directory }}/{{ project_name }}'
+    state: absent

@@ -1,7 +1,4 @@
 ---
-- name: remove resources
-  include: remove.yml
-
 - name: deploy resource
   vars:
     action: 'deploy'
