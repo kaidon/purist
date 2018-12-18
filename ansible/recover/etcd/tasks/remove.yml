@@ -1,0 +1,15 @@
+---
+- name: Stop etcd service
+  become: true
+  systemd:
+    state: stopped
+    name: etcd
+
+- name: Remove etcd config
+  become: true
+  file:
+      path: '{{ item }}'
+      state: absent
+  with_items:
+    - '{{ etcd_config_dir }}'
+    - '/etc/etcd.env'
