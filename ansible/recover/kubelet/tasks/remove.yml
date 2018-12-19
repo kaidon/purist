@@ -1,11 +1,11 @@
 ---
-- name: Stop kubelete service
+- name: Stop kubelet service
   become: true
   systemd:
     state: stopped
     name: etcd
 
-- name: Remove kubelete config
+- name: Remove kubelet config
   become: true
   file:
       path: '{{ item }}'
