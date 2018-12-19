@@ -3,7 +3,7 @@
   become: true
   systemd:
     state: stopped
-    name: etcd
+    name: kube-node
 
 - name: Remove kubelet config
   become: true
