@@ -1,0 +1,20 @@
+---
+- name: Remove Container
+  include_role:
+    name: 'recover/docker/container'
+    tasks_from: remove
+    apply:
+      vars:
+        name: '{{ item.value.container_name }}'
+  with_dict: "{{ hostvars[inventory_hostname][project_name + '_services'] }}"
+
+- name: Ensuring config directories not exist
+  become: true
+  file:
+    path: "{{ node_config_directory }}/{{ item.key }}"
+    state: "absent"
+  when:
+    - item.value.group is defined
+    - inventory_hostname in groups[item.value.group]
+    - item.value.enabled | bool
+  with_dict: "{{ hostvars[inventory_hostname][project_name + '_services'] }}"

@@ -1,5 +1,5 @@
 ---
-- name: Remove Project volume
+- name: Remove {{ name }} image
   dire_docker:
     action: "remove_image"
-    name: "{{ project_name }}"
+    name: "{{ name }}"

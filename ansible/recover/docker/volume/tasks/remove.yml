@@ -1,5 +1,5 @@
 ---
-- name: Remove Project volume
+- name: Remove {{ name }} volume
   kolla_docker:
     action: "remove_volume"
-    name: "{{ project_name }}"
+    name: "{{ name }}"

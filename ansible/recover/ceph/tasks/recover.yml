@@ -1,8 +1,10 @@
 ---
+- name: remove resources
+  include: remove.yml
+
 - name: deploy resource
   vars:
     action: 'deploy'
-    mariadb_recover: True
     common_run: True
   include_role:
-    name: mariadb
+    name: '{{ project_name }}'

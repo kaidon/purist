@@ -15,5 +15,6 @@
     role_rabbitmq_password: '{{ rabbitmq_password }}'
     role_rabbitmq_port: '{{ rabbitmq_port }}'
     role_rabbitmq_user: '{{ rabbitmq_user }}'
+    common_run: True
   include_role:
     name: rabbitmq

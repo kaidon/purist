@@ -1,0 +1,4 @@
+---
+- name: recover {{ project_name }}
+  include_role:
+    name: recover/kolla

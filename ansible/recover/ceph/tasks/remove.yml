@@ -1,0 +1,5 @@
+---
+- name: remove config
+  file:
+    path: '{{ node_config_directory }}/{{ project_name }}'
+    state: absent
