@@ -1,0 +1,14 @@
+---
+- name: Stop kubelet service
+  become: true
+  systemd:
+    state: stopped
+    name: kubelet
+
+- name: Remove kubelet config
+  become: true
+  file:
+      path: '{{ item }}'
+      state: absent
+  with_items:
+    - '{{ kube_config_dir }}/kubelet.env'

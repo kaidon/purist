@@ -1,0 +1,3 @@
+---
+- name: Remove resources
+  include: remove.yml
