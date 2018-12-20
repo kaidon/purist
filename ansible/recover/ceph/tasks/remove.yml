@@ -1,5 +1,12 @@
 ---
-- name: remove config
-  file:
-    path: '{{ node_config_directory }}/{{ project_name }}'
-    state: absent
+- name: Remove Container
+  include_role:
+    name: 'recover/docker/container'
+    tasks_from: remove
+    apply:
+      vars:
+        name: '{{ item }}'
+  with_items:
+    - ceph_rgw
+    - ceph_mgr
+    - ceph_mon

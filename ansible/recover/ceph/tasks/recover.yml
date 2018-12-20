@@ -1,10 +1,21 @@
 ---
-- name: remove resources
+- name: clean containers
   include: remove.yml
 
-- name: deploy resource
-  vars:
-    action: 'deploy'
+- set_fact:
     common_run: True
-  include_role:
-    name: '{{ project_name }}'
+
+- include_role:
+    name: ceph
+    tasks_from: start_mons.yml
+  when: inventory_hostname in groups['ceph-mon']
+
+- include_role:
+    name: ceph
+    tasks_from: start_mgrs.yml
+  when: inventory_hostname in groups['ceph-mgr']
+
+- include_role:
+    name: ceph
+    tasks_from: start_rgws.yml
+  when: inventory_hostname in groups['ceph-rgw']

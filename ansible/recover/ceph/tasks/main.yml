@@ -1,2 +1,3 @@
 ---
-- include: recover.yml
+- name: recover {{ project_name }}
+  include: recover.yml
