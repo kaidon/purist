@@ -1,2 +1,2 @@
 # purist
-cluter recover
+cluster recover
