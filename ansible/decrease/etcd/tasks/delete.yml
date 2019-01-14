@@ -1,0 +1,11 @@
+---
+- name: Remove etcd node info on cluster
+  block:
+    - name: Get etcd number
+      shell: >-
+        {{ bin_dir }}/etcdctl --key-file {{ etcd_cert_dir }}/admin-{{ inventory_hostname }}-key.pem --cert-file {{ etcd_cert_dir }}/admin-{{ inventory_hostname }}.pem --endpoints=https://127.0.0.1:2379 member list | awk -F : '/{{ ansible_host }}/{print $1}'
+      register: etcd_number
+    - name: Delete etcd node info
+      shell: {{ bin_dir }}/etcdctl --key-file {{ etcd_cert_dir }}/admin-{{ inventory_hostname }}-key.pem --cert-file {{ etcd_cert_dir }}/admin-{{ inventory_hostname }}.pem --endpoints=https://127.0.0.1:2379 member remove {{ etcd_number.stdout }}
+  when: "inventory_hostname in groups['etcd']"
+  delegate_to: "{{ groups['kube-master'][0] }}"
