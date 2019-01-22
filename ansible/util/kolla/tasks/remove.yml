@@ -1,4 +1,7 @@
 ---
+- name: load options
+  include: options.yml
+
 - name: Remove Container
   include_role:
     name: 'util/docker/container'

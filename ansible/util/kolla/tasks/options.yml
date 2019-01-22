@@ -1,0 +1,12 @@
+---
+- name: load {{ project_name }} vars
+  include_vars:
+    file: '{{ kolla_path }}/ansible/roles/{{ project_name }}/defaults/main.yml'
+
+- name: load global path
+  include_vars:
+    file: '{{ germ_path }}/germ/openstack/etc/globals.yml'
+
+- name: load germ path
+  include_vars:
+    file: '{{ germ_path }}/germ/openstack/etc/germ.yml'
