@@ -1,4 +1,10 @@
 ---
+- name: Stop {{ name }} Container
+  dire_docker:
+    action: "stop_container"
+    name: "{{ name }}"
+  ignore_errors: yes
+
 - name: Remove {{ name }} Container
   dire_docker:
     action: "remove_container"
