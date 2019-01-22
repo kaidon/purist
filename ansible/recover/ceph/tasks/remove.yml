@@ -1,7 +1,7 @@
 ---
 - name: Remove Container
   include_role:
-    name: 'recover/docker/container'
+    name: 'util/docker/container'
     tasks_from: remove
     apply:
       vars:

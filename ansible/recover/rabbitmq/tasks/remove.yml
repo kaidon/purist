@@ -1,7 +1,7 @@
 ---
 - name: Remove Container
   include_role:
-    name: 'recover/docker/container'
+    name: 'util/docker/container'
     tasks_from: remove
     apply:
       vars:
@@ -9,7 +9,7 @@
 
 - name: Remove Volume
   include_role:
-    name: 'recover/docker/volume'
+    name: 'util/docker/volume'
     tasks_from: remove
     apply:
       vars:
