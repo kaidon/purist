@@ -1,0 +1,25 @@
+---
+- name: get decrease node nova services
+  shell: |
+    docker exec
+    {{ for var in auth_list }}
+      -e {{ var }}
+    {{ endfor }}
+    kolla_toolbox
+    openstack compute service
+    list  --host {{ inventory_host }} -f value -c ID
+  when: inventory_host in groups['decrease']
+  delegate_to: groups['control'] | first
+  register: result
+
+- name: delete decrease node nova services
+  shell: |
+    docker exec
+    {{ for var in auth_list }}
+      -e {{ var }}
+    {{ endfor }}
+    kolla_toolbox
+    openstack compute service
+    show {{ item }}
+  with_items:
+    {{ result.stdout_lines }}
