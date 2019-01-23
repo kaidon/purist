@@ -1,0 +1,6 @@
+---
+- fail: 
+    msg: "can not delete two osd node one time"
+  when: 
+    - groups["decrease"] | reject("in", groups["storage"]) | length > 2
+  delegate_to: '{{ groups["control"] | first }}'

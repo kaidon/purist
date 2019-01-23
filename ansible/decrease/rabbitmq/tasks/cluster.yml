@@ -1,0 +1,8 @@
+---
+- name: get decrease node nova services
+  shell: |-
+    docker exec \
+    rabbitmq \
+    rabbitmqctl forget_cluster_node rabbit@{{ inventory_hostname }}
+  when: inventory_hostname in groups['decrease']
+  delegate_to: '{{ groups["control"] | first }}'

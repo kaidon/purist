@@ -10,8 +10,6 @@
   include_role:
     name: '{{ project_name }}'
 
-- include: cluster.yml
-
 - name: remove {{ project_name }}
   include_role:
     name: util/kolla

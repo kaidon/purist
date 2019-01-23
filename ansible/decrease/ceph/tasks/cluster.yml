@@ -1,0 +1,8 @@
+---
+- name: get decrease node nova services
+  shell: |-
+    docker exec \
+    kolla_toolbox \
+    ceph mon remove {{ hostvars[inventory_hostname]['ansible_' + storage_interface]['ipv4']['address'] }}
+  when: inventory_hostname in groups['decrease']
+  delegate_to: '{{ groups["control"] | first }}'
